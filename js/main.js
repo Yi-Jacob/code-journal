@@ -3,7 +3,7 @@
 
 var $photoUrl = document.querySelector('.photo-url');
 var $image = document.querySelector('.image');
-var $entryForm = document.querySelector('.create-form');
+var $entryForm = document.querySelector('.form');
 
 $photoUrl.addEventListener('input', handleInput);
 $entryForm.addEventListener('submit', handleSubmit);
