@@ -13,11 +13,61 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
+
+  <header class="purple">
+    <div class="container">
+      <div class="column-full">
+        <p class="header-position header-font">Code Journal</p>
+      </div>
+    </div>
   </header>
+
   <main>
+    <div data-view="entry-form">
+      <form class="form">
+        <div class="container">
+
+          <div class="row">
+            <div class="column-full">
+              <h1 class="entry-font">New Entry</h1>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="column-half column-full">
+              <img src="images/placeholder-image-square.jpg" alt="Placeholder Image" class="image">
+            </div>
+
+            <div class="row flex-column column-half column-full">
+              <label for="title">Title</label>
+              <input required class="title-input" name="title" type="text">
+
+              <label for="photourl">Photo URL</label>
+              <input required class="photo-url" name="photourl" type="text">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="column-half column-full">
+              <div class="row flex-column">
+                <label for="notes">Notes</label>
+                <textarea required class="notes-input" name="notes" rows="7"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="column-half column-full button-position">
+              <button class="save-button" type="submit">SAVE</button>
+            </div>
+          </div>
+
+        </div>
+      </form>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>

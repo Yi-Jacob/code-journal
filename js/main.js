@@ -1,2 +1,28 @@
 /* global data */
 /* exported data */
+
+var $photoUrl = document.querySelector('.photo-url');
+var $image = document.querySelector('.image');
+var $entryForm = document.querySelector('.form');
+
+$photoUrl.addEventListener('input', handleInput);
+$entryForm.addEventListener('submit', handleSubmit);
+
+function handleInput(event) {
+  $image.setAttribute('src', event.target.value);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  var newObj = {
+    title: $entryForm.elements.title.value,
+    photoURL: $entryForm.elements.photourl.value,
+    notes: $entryForm.elements.notes.value
+  };
+  newObj.entryId = data.nextEntryId;
+  data.nextEntryId++;
+  data.entries.unshift(newObj);
+
+  $image.setAttribute('src', 'images/placeholder-image-square.jpg');
+  $entryForm.reset();
+}
