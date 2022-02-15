@@ -7,14 +7,15 @@ var data = {
   nextEntryId: 1
 };
 
-var oldData = localStorage.getItem('code-journal');
+var previousData = localStorage.getItem('entry-list');
 
-window.addEventListener('beforeunload', storeData);
-function storeData(event) {
-  var dataJSON = JSON.stringify(data.entries);
-  localStorage.setItem('code-journal', dataJSON);
+if (previousData !== null) {
+  data = JSON.parse(previousData);
 }
 
-if (oldData !== null) {
-  data.entries = JSON.parse(oldData);
+function handleUnload(event) {
+  var entriesJSON = JSON.stringify(data);
+  localStorage.setItem('entry-list', entriesJSON);
 }
+
+window.addEventListener('beforeunload', handleUnload);

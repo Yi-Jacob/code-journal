@@ -13,53 +13,58 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
+
   <header class="purple">
     <div class="container">
-      <p class="header-position header-font">Code Journal</p>
+      <div class="column-full">
+        <p class="header-position header-font">Code Journal</p>
+      </div>
     </div>
   </header>
 
   <main>
     <div data-view="entry-form">
-      <form>
-        <div class="container font-body">
+      <form class="create-form">
+        <div class="container">
 
           <div class="row">
-            <div class="column-half">
-              <h1 class="entry-font entry-position">New Entry</h1>
+            <div class="column-full">
+              <h1 class="entry-font">New Entry</h1>
             </div>
           </div>
 
           <div class="row">
-            <div class="column-half">
-              <img class="photo" src="images/placeholder-image-square.jpg" alt="Placeholder Image">
+            <div class="column-half column-full">
+              <img src="images/placeholder-image-square.jpg" alt="Placeholder Image" class="image">
+            </div>
+
+            <div class="row flex-column column-half column-full">
+              <label for="title">Title</label>
+              <input required class="title-input" name="title" type="text">
+
+              <label for="photourl">Photo URL</label>
+              <input required class="photo-url" name="photourl" type="text">
             </div>
           </div>
 
           <div class="row">
-            <div class="column-half">
+            <div class="column-half column-full">
               <div class="row flex-column">
-                <label for="title">Title</label>
-                <input class="padding" name="title" type="text" id="title-input" required>
-              </div>
-              <div class="row flex-column">
-                <label for="photo-url">Photo URL</label>
-                <input class="padding photo-url" name="photo-url" type="text" id="photo-input" required>
+                <label for="notes">Notes</label>
+                <textarea required class="notes-input" name="notes" id="notes-input"></textarea>
               </div>
             </div>
           </div>
 
           <div class="row">
-            <div class="column-half display-flex flex-column">
-              <label for="notes">Notes</label>
-              <textarea class="textarea-size padding" name="notes" id="notes-input" required></textarea>
+            <div class="column-half column-full button-position">
+              <button class="save-button" type="submit">SAVE</button>
             </div>
           </div>
-          <div class="row button-align column-half">
-            <button class="save-button" type="submit">SAVE</button>
-          </div>
+
         </div>
       </form>
     </div>

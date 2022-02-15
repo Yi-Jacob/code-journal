@@ -2,27 +2,27 @@
 /* exported data */
 
 var $photoUrl = document.querySelector('.photo-url');
-$photoUrl.addEventListener('input', getURL);
+var $image = document.querySelector('.image');
+var $entryForm = document.querySelector('.create-form');
 
-var $form = document.querySelector('form');
-$form.addEventListener('submit', formData);
+$photoUrl.addEventListener('input', handleInput);
+$entryForm.addEventListener('submit', handleSubmit);
 
-var $inputs = document.querySelector('form').elements;
-var $photo = document.querySelector('.photo');
-
-function getURL(event) {
-  $photo.setAttribute('src', event.target.value);
+function handleInput(event) {
+  $image.src = event.target.value;
 }
 
-function formData(event) {
+function handleSubmit(event) {
   event.preventDefault();
-  var obj = {};
-  for (var i = 0; i < $inputs.length; i++) {
-    obj[$inputs[i].name] = $inputs[i].value;
-  }
-  obj.nextEntryId = data.nextEntryId;
+  var newObj = {
+    title: $entryForm.elements.title.value,
+    photoURL: $entryForm.elements.photourl.value,
+    notes: $entryForm.elements.notes.value
+  };
+  newObj.entryId = data.nextEntryId;
   data.nextEntryId++;
-  data.entries.unshift(obj);
-  $photo.setAttribute('src', 'images/placeholder-image-square.jpg');
-  $form.reset();
+  data.entries.unshift(newObj);
+
+  $image.src = 'images/placeholder-image-square.jpg';
+  $entryForm.reset();
 }
