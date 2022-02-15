@@ -4,12 +4,11 @@
 var $photoUrl = document.querySelector('.photo-url');
 $photoUrl.addEventListener('input', getURL);
 
-var $photo = document.querySelector('.photo');
-
 var $form = document.querySelector('form');
 $form.addEventListener('submit', formData);
 
 var $inputs = document.querySelector('form').elements;
+var $photo = document.querySelector('.photo');
 
 function getURL(event) {
   $photo.setAttribute('src', event.target.value);
