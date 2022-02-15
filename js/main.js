@@ -9,7 +9,7 @@ $photoUrl.addEventListener('input', handleInput);
 $entryForm.addEventListener('submit', handleSubmit);
 
 function handleInput(event) {
-  $image.src = event.target.value;
+  $image.setAttribute('src', event.target.value);
 }
 
 function handleSubmit(event) {
@@ -23,6 +23,6 @@ function handleSubmit(event) {
   data.nextEntryId++;
   data.entries.unshift(newObj);
 
-  $image.src = 'images/placeholder-image-square.jpg';
+  $image.setAttribute('src', 'images/placeholder-image-square.jpg');
   $entryForm.reset();
 }
