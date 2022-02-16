@@ -19,15 +19,15 @@
 
   <header class="purple">
     <div class="container">
-      <div class="column-full row nav-alignment">
+      <div class="column-full">
         <p class="header-position header-font">Code Journal</p>
-        <a href="#" class="nav-entry">Entries</a>
+        <a href="#" class="entry-link">Entries</a>
       </div>
     </div>
   </header>
 
   <main>
-    <div data-view="entry-form" class="hidden">
+    <div data-view="entry-form" class="hidden view-form" >
       <form class="form">
         <div class="container">
 
@@ -59,33 +59,40 @@
               </div>
             </div>
           </div>
-
           <div class="row">
             <div class="column-half column-full button-position">
-              <button class="save-button" type="submit" data-view="entry-form">SAVE</button>
+              <button class="save-button" type="submit" >SAVE</button>
             </div>
           </div>
-
         </div>
       </form>
     </div>
 
-    <div class="view" data-view="entries">
-      <div class="container font-body">
+    <div data-view="entries" class="view">
+      <div class="container">
         <div class="row">
-          <div class="column-full display-flex justify-between">
-            <h1 class="font-header header-padding margin-zero">Entries</h1>
-            <a href="#" id="new-link" data-view="entry-form"
-              class="new-button">NEW</a>
+          <div class="column-half column-full flex alignment">
+            <h2 class="entries-font">Entries</h2>
+            <a class="new-button new-link">NEW</a>
           </div>
         </div>
-        <ul class="padding-zero">
-          <div class="" id="no-entry" data-view="no-entries">
-            <div class="column-full display-flex justify-center align-center">
-              <p>No entries have been recorded.</p>
+
+        <div class="no entries" data-view="no-entries">
+          <div class="container font-body">
+            <div class="row">
+              <div class="column-full display-flex justify-center align-center">
+                <p>No entries have been recorded.</p>
+              </div>
             </div>
           </div>
+        </div>
+
+        <ul>
+          <li>
+
+          </li>
         </ul>
+
       </div>
     </div>
   </main>

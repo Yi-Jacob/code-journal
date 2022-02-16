@@ -4,6 +4,31 @@
 var $photoUrl = document.querySelector('.photo-url');
 var $image = document.querySelector('.image');
 var $entryForm = document.querySelector('.form');
+var $view = document.querySelector('.view');
+var $entryLink = document.querySelector('.entry-link');
+var $newLink = document.querySelector('.new-link');
+var $noEntry = document.querySelector('.no-entries');
+
+window.addEventListener('DOMContentLoaded', renderEntry);
+$entryForm.addEventListener('submit', handleSubmit);
+window.addEventListener('DOMContentLoaded', handleLoad);
+$entryLink.addEventListener('click', viewSwap);
+$newLink.addEventListener('click', viewSwap);
+$noEntry.addEventListener('click', dataView);
+
+var $ul = document.querySelector('ul');
+
+function handleLoad(event) {
+  for (var i = 0; i < data.entries.length; i++) {
+    var render = renderEntry(data.entries[i]);
+    $ul.appendChild(render);
+  }
+  if (data.entries.length === 0) {
+    $noEntry.className = '';
+  } else {
+    $noEntry.className = 'hidden';
+  }
+}
 
 $photoUrl.addEventListener('input', handleInput);
 $entryForm.addEventListener('submit', handleSubmit);
@@ -22,41 +47,19 @@ function handleSubmit(event) {
   newObj.entryId = data.nextEntryId;
   data.nextEntryId++;
   data.entries.unshift(newObj);
+  $ul.prepend(renderEntry(newObj));
+  viewSwap('entry-form');
 
   $image.setAttribute('src', 'images/placeholder-image-square.jpg');
   $entryForm.reset();
+  if (data.entries.length === 0) {
+    $noEntry.className = '';
+  } else {
+    $noEntry.className = 'hidden';
+  }
 }
 
-/*
-function renderJournal(event) {
-  var divRow = document.createElement('div');
-  divRow.setAttribute('class', 'row');
-
-  var imageColumn = document.createElement('div');
-  imageColumn.setAttribute('class', 'column-half');
-  divRow.appendChild(imageColumn);
-
-  var image = document.createElement('img');
-  image.setAttribute('src', data.entries[i].photoURL);
-  imageColumn.appendChild(image);
-
-  var headingColumn = document.createElement('div');
-  headingColumn.setAttribute('class', 'column-half');
-  image.appendChild(headingColumn);
-
-  var hThree = document.createElement('h3');
-  hThree.textContent = data.entries[i].title;
-  headingColumn.appendChild(hThree);
-
-  var notes = document.createElement('p');
-  notes.textContent = data.entries[i].notes;
-  headingColumn.appendChild(notes);
-
-  return divRow;
-}
-*/
-
-function renderJournal(event) {
+function renderEntry(entry) {
   var $initialRow = document.createElement('div');
   $initialRow.className = 'row';
 
@@ -66,7 +69,7 @@ function renderJournal(event) {
 
   var $entryImage = document.createElement('img');
   $imageColumn.appendChild($entryImage);
-  $entryImage.setAttribute('src', data.entries[i].photoURL);
+  $entryImage.setAttribute('src', entry.imageURL);
 
   var $textColumn = document.createElement('div');
   $initialRow.appendChild($textColumn);
@@ -77,7 +80,7 @@ function renderJournal(event) {
   $rowTitle.setAttribute('class', 'row');
 
   var $title = document.createElement('h2');
-  var $titleText = document.createTextNode(data.entries[i].title);
+  var $titleText = document.createTextNode(entry.title);
   $title.appendChild($titleText);
   $rowTitle.appendChild($title);
 
@@ -86,18 +89,27 @@ function renderJournal(event) {
   $rowText.setAttribute('class', 'row');
 
   var $notes = document.createElement('p');
-  var $notesText = document.createTextNode(data.entries[i].notes);
+  var $notesText = document.createTextNode(entry.notes);
   $notes.appendChild($notesText);
   $rowText.appendChild($notes);
+  $notes.setAttribute('class', 'margin-bottom');
 
   return $initialRow;
 }
 
-window.addEventListener('DOMContentLoaded', renderJournal);
+function viewSwap(string) {
+  for (var i = 0; i < $view.length; i++) {
+    if ($view[i].dataset.view === string) {
+      $view[i].className = 'view hidden';
+    } else {
+      $view[i].className = 'view';
+    }
+  }
+}
 
-var list = document.querySelector('ul');
-
-for (var i = 0; i < data.length; i++) {
-  var journal = renderJournal(data.entries[i]);
-  list.appendChild(journal);
+function dataView(event) {
+  var $dataView = event.target.getAttribute('data-view');
+  if (event.target.nodeName === 'A' && $dataView !== '') {
+    viewSwap($dataView);
+  }
 }
