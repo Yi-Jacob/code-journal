@@ -36,7 +36,7 @@ function renderJournal(event) {
   divRow.appendChild(imageColumn);
 
   var image = document.createElement('img');
-  image.setAttribute('src', data.entries[i].imageUrl);
+  image.setAttribute('src', data.entries[i].photoURL);
   imageColumn.appendChild(image);
 
   var headingColumn = document.createElement('div');
@@ -49,6 +49,7 @@ function renderJournal(event) {
 
   var notes = document.createElement('p');
   notes.textContent = data.entries[i].notes;
+  headingColumn.appendChild(notes);
 
   return divRow;
 }
