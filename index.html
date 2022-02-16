@@ -19,29 +19,26 @@
 
   <header class="purple">
     <div class="container">
-      <div class="column-full">
+      <div class="row flex-start">
         <p class="header-position header-font">Code Journal</p>
-        <a href="#" class="entry-link">Entries</a>
+        <a href="#" class="entry-link header-position header-font" data-view="entries">Entries</a>
       </div>
     </div>
   </header>
 
   <main>
-    <div data-view="entry-form" class="hidden view-form" >
+    <div data-view="entry-form" class="hidden" >
       <form class="form">
         <div class="container">
-
           <div class="row">
             <div class="column-full">
               <h1 class="entry-font">New Entry</h1>
             </div>
           </div>
-
           <div class="row">
             <div class="column-half column-full">
               <img src="images/placeholder-image-square.jpg" alt="Placeholder Image" class="image">
             </div>
-
             <div class="row flex-column column-half column-full">
               <label for="title">Title</label>
               <input required class="title-input" name="title" type="text">
@@ -50,7 +47,6 @@
               <input required class="photo-url" name="photourl" type="text">
             </div>
           </div>
-
           <div class="row">
             <div class="column-half column-full">
               <div class="row flex-column">
@@ -61,7 +57,7 @@
           </div>
           <div class="row">
             <div class="column-half column-full button-position">
-              <button class="save-button" type="submit" >SAVE</button>
+              <button class="save-button" type="submit" data-view="entry-form">SAVE</button>
             </div>
           </div>
         </div>
@@ -76,23 +72,17 @@
             <a class="new-button new-link">NEW</a>
           </div>
         </div>
-
-        <div class="no entries" data-view="no-entries">
-          <div class="container font-body">
-            <div class="row">
-              <div class="column-full display-flex justify-center align-center">
-                <p>No entries have been recorded.</p>
+        <ul>
+          <div class="no-entries" data-view="no-entries">
+            <div class="container">
+              <div class="row">
+                <div class="column-full column-half">
+                  <p>No entries have been recorded.</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <ul>
-          <li>
-
-          </li>
         </ul>
-
       </div>
     </div>
   </main>

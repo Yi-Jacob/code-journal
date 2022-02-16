@@ -4,17 +4,16 @@
 var $photoUrl = document.querySelector('.photo-url');
 var $image = document.querySelector('.image');
 var $entryForm = document.querySelector('.form');
-var $view = document.querySelector('.view');
+var $view = document.querySelectorAll('.view');
 var $entryLink = document.querySelector('.entry-link');
 var $newLink = document.querySelector('.new-link');
 var $noEntry = document.querySelector('.no-entries');
 
-window.addEventListener('DOMContentLoaded', renderEntry);
+$photoUrl.addEventListener('input', handleInput);
 $entryForm.addEventListener('submit', handleSubmit);
 window.addEventListener('DOMContentLoaded', handleLoad);
-$entryLink.addEventListener('click', viewSwap);
-$newLink.addEventListener('click', viewSwap);
-$noEntry.addEventListener('click', dataView);
+$newLink.addEventListener('click', dataView);
+$entryLink.addEventListener('click', dataView);
 
 var $ul = document.querySelector('ul');
 
@@ -22,8 +21,8 @@ function handleLoad(event) {
   for (var i = 0; i < data.entries.length; i++) {
     var render = renderEntry(data.entries[i]);
     $ul.appendChild(render);
-  }
-  if (data.entries.length === 0) {
+    viewSwap(data.view);
+  } if (data.entries.length === 0) {
     $noEntry.className = '';
   } else {
     $noEntry.className = 'hidden';
@@ -48,15 +47,9 @@ function handleSubmit(event) {
   data.nextEntryId++;
   data.entries.unshift(newObj);
   $ul.prepend(renderEntry(newObj));
-  viewSwap('entry-form');
-
+  viewSwap('entries');
   $image.setAttribute('src', 'images/placeholder-image-square.jpg');
   $entryForm.reset();
-  if (data.entries.length === 0) {
-    $noEntry.className = '';
-  } else {
-    $noEntry.className = 'hidden';
-  }
 }
 
 function renderEntry(entry) {
@@ -100,10 +93,17 @@ function renderEntry(entry) {
 function viewSwap(string) {
   for (var i = 0; i < $view.length; i++) {
     if ($view[i].dataset.view === string) {
-      $view[i].className = 'view hidden';
-    } else {
       $view[i].className = 'view';
+      var currentView = $view[i].dataset.view;
+      data.view = currentView;
+    } else {
+      $view[i].className = 'view hidden';
     }
+  }
+  if (data.view === 'entry-form') {
+    $noEntry.className = 'hidden';
+  } else if (data.entries.length === 0 && data.view === 'entries') {
+    $noEntry.className = '';
   }
 }
 
