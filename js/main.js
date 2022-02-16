@@ -1,6 +1,5 @@
 /* global data */
 /* exported data */
-
 var $photoUrl = document.querySelector('.photo-url');
 var $image = document.querySelector('.image');
 var $entryForm = document.querySelector('.form');
@@ -28,9 +27,6 @@ function handleLoad(event) {
     $noEntry.className = 'hidden';
   }
 }
-
-$photoUrl.addEventListener('input', handleInput);
-$entryForm.addEventListener('submit', handleSubmit);
 
 function handleInput(event) {
   $image.setAttribute('src', event.target.value);
