@@ -1,5 +1,6 @@
 /* global data */
 /* exported data */
+localStorage.clear();
 var $photoUrl = document.querySelector('.photo-url');
 var $image = document.querySelector('.image');
 var $entryForm = document.querySelector('.form');
@@ -10,16 +11,16 @@ var $noEntry = document.querySelector('.no-entries');
 
 $photoUrl.addEventListener('input', handleInput);
 $entryForm.addEventListener('submit', handleSubmit);
-window.addEventListener('DOMContentLoaded', handleLoad);
 $newLink.addEventListener('click', dataView);
 $entryLink.addEventListener('click', dataView);
+window.addEventListener('DOMContentLoaded', handleLoad);
 
-var $ul = document.querySelector('ul');
+var list = document.querySelector('ul');
 
 function handleLoad(event) {
   for (var i = 0; i < data.entries.length; i++) {
-    var render = renderEntry(data.entries[i]);
-    $ul.appendChild(render);
+    var render = renderJournal(data.entries[i]);
+    list.appendChild(render);
     viewSwap(data.view);
   } if (data.entries.length === 0) {
     $noEntry.className = '';
@@ -42,13 +43,13 @@ function handleSubmit(event) {
   newObj.entryId = data.nextEntryId;
   data.nextEntryId++;
   data.entries.unshift(newObj);
-  $ul.prepend(renderEntry(newObj));
+  list.prepend(renderJournal(newObj));
   viewSwap('entries');
   $image.setAttribute('src', 'images/placeholder-image-square.jpg');
   $entryForm.reset();
 }
 
-function renderEntry(entry) {
+function renderJournal(entry) {
   var $initialRow = document.createElement('div');
   $initialRow.className = 'row';
 
@@ -58,7 +59,8 @@ function renderEntry(entry) {
 
   var $entryImage = document.createElement('img');
   $imageColumn.appendChild($entryImage);
-  $entryImage.setAttribute('src', entry.imageURL);
+  $entryImage.setAttribute('src', entry.photoURL);
+  $entryImage.setAttribute('class', 'margin-bottom');
 
   var $textColumn = document.createElement('div');
   $initialRow.appendChild($textColumn);
