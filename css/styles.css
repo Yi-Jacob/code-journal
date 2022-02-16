@@ -7,7 +7,7 @@ body {
 }
 
 .header-position {
-  margin: 0;
+  margin: 0 2rem 0 0;
   padding: 1rem 0;
 }
 
@@ -77,5 +77,16 @@ input {
 
 .alignment {
   justify-content: space-between;
+  align-items: center;
+}
+
+.nav-entry {
+  font-size: 1.3rem;
+  font-family: "Open Sans", sans-serif;
+  color: white;
+  text-decoration: none;
+}
+
+.nav-alignment {
   align-items: center;
 }
