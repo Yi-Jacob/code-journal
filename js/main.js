@@ -27,7 +27,6 @@ function handleSubmit(event) {
   $entryForm.reset();
 }
 
-// eslint-disable-next-line no-unused-vars
 function renderJournal(event) {
   var divRow = document.createElement('div');
   divRow.setAttribute('class', 'row');
@@ -37,7 +36,7 @@ function renderJournal(event) {
   divRow.appendChild(imageColumn);
 
   var image = document.createElement('img');
-  image.setAttribute('src', 'data.entries[i].imageUrl');
+  image.setAttribute('src', data.entries[i].imageUrl);
   imageColumn.appendChild(image);
 
   var headingColumn = document.createElement('div');
@@ -45,11 +44,20 @@ function renderJournal(event) {
   image.appendChild(headingColumn);
 
   var hThree = document.createElement('h3');
-  hThree.textContent = data.entries.title;
+  hThree.textContent = data.entries[i].title;
   headingColumn.appendChild(hThree);
 
   var notes = document.createElement('p');
-  notes.textContent = data.entries.notes;
+  notes.textContent = data.entries[i].notes;
 
   return divRow;
+}
+
+window.addEventListener('DOMContentLoaded', renderJournal);
+
+var list = document.querySelector('ul');
+
+for (var i = 0; i < data.length; i++) {
+  var journal = renderJournal(data.entries[i]);
+  list.appendChild(journal);
 }
