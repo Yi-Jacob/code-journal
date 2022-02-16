@@ -67,6 +67,7 @@ input {
   padding: 0.7rem 1rem;
   font-size: 0.7rem;
   justify-content: flex-end;
+  text-decoration: none;
 }
 
 .entries-font {

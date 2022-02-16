@@ -27,6 +27,7 @@ function handleSubmit(event) {
   $entryForm.reset();
 }
 
+/*
 function renderJournal(event) {
   var divRow = document.createElement('div');
   divRow.setAttribute('class', 'row');
@@ -52,6 +53,44 @@ function renderJournal(event) {
   headingColumn.appendChild(notes);
 
   return divRow;
+}
+*/
+
+function renderJournal(event) {
+  var $initialRow = document.createElement('div');
+  $initialRow.className = 'row';
+
+  var $imageColumn = document.createElement('div');
+  $initialRow.appendChild($imageColumn);
+  $imageColumn.setAttribute('class', 'column-half');
+
+  var $entryImage = document.createElement('img');
+  $imageColumn.appendChild($entryImage);
+  $entryImage.setAttribute('src', data.entries[i].photoURL);
+
+  var $textColumn = document.createElement('div');
+  $initialRow.appendChild($textColumn);
+  $textColumn.setAttribute('class', 'column-half');
+
+  var $rowTitle = document.createElement('div');
+  $textColumn.appendChild($rowTitle);
+  $rowTitle.setAttribute('class', 'row');
+
+  var $title = document.createElement('h2');
+  var $titleText = document.createTextNode(data.entries[i].title);
+  $title.appendChild($titleText);
+  $rowTitle.appendChild($title);
+
+  var $rowText = document.createElement('div');
+  $textColumn.appendChild($rowText);
+  $rowText.setAttribute('class', 'row');
+
+  var $notes = document.createElement('p');
+  var $notesText = document.createTextNode(data.entries[i].notes);
+  $notes.appendChild($notesText);
+  $rowText.appendChild($notes);
+
+  return $initialRow;
 }
 
 window.addEventListener('DOMContentLoaded', renderJournal);
