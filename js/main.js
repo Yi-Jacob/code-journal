@@ -66,11 +66,15 @@ function renderJournal(entry) {
 
   var titleDiv = document.createElement('div');
   textColumn.appendChild(titleDiv);
-  titleDiv.className = 'row';
+  titleDiv.className = 'row alignment';
 
   var hTwo = document.createElement('h2');
   hTwo.textContent = entry.title;
   titleDiv.appendChild(hTwo);
+
+  var editPen = document.createElement('i');
+  editPen.className = 'fas fa-pen pen';
+  titleDiv.appendChild(editPen);
 
   var notesDiv = document.createElement('div');
   textColumn.appendChild(notesDiv);
