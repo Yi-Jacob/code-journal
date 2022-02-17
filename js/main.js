@@ -66,7 +66,11 @@ function handleSubmit(event) {
 }
 
 function renderJournal(entry) {
+  var listItem = document.createElement('li');
+  listItem.setAttribute('data-entry-id', entry.entryId);
+
   var $initialDiv = document.createElement('div');
+  listItem.appendChild($initialDiv);
   $initialDiv.className = 'row';
 
   var imgColumn = document.createElement('div');
@@ -105,7 +109,7 @@ function renderJournal(entry) {
   notesDiv.appendChild(notes);
   notes.className = 'margin-bottom';
 
-  return $initialDiv;
+  return listItem;
 }
 
 function swapView(string) {
@@ -123,6 +127,10 @@ function swapView(string) {
   } else if (data.entries.length === 0 && data.view === 'entries') {
     $noEntry.className = '';
   }
+  $header.textContent = 'New Entry';
+  data.editing = null;
+  $image.src = 'images/placeholder-image-square.jpg';
+  $entryForm.reset();
 }
 
 function viewData(event) {
