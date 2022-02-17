@@ -1,5 +1,6 @@
 /* global data */
 /* exported data */
+localStorage.clear();
 var $photoUrl = document.querySelector('.photo-url');
 var $image = document.querySelector('.image');
 var $entryForm = document.querySelector('.form');
@@ -13,6 +14,7 @@ $photoUrl.addEventListener('input', handleInput);
 $entryForm.addEventListener('submit', handleSubmit);
 $newLink.addEventListener('click', viewData);
 $entryLink.addEventListener('click', viewData);
+$list.addEventListener('click', editEntry);
 window.addEventListener('DOMContentLoaded', handleLoad);
 
 function handleLoad(event) {
@@ -75,6 +77,8 @@ function renderJournal(entry) {
   var editPen = document.createElement('i');
   editPen.className = 'fas fa-pen pen';
   titleDiv.appendChild(editPen);
+  editPen.setAttribute('data-view', 'entries');
+  editPen.setAttribute('data-entry-id', entry.entryId);
 
   var notesDiv = document.createElement('div');
   textColumn.appendChild(notesDiv);
@@ -108,6 +112,16 @@ function swapView(string) {
 function viewData(event) {
   var $dataView = event.target.getAttribute('data-view');
   if (event.target.nodeName === 'A' && $dataView !== '') {
+    swapView($dataView);
+  }
+}
+
+function editEntry(event) {
+  var $dataView = event.target.getAttribute('data-view');
+  data.editing = event.target.getAttribute('data-entry-id');
+  if (event.target.nodeName !== 'I') {
+    return event;
+  } else if (event.target.nodeName === 'I' && $dataView !== '') {
     swapView($dataView);
   }
 }
