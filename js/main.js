@@ -9,6 +9,9 @@ var $entryLink = document.querySelector('.entry-link');
 var $newLink = document.querySelector('.new-link');
 var $noEntry = document.querySelector('.no-entries');
 var $list = document.querySelector('ul');
+var $title = document.querySelector('.title-input');
+var $notes = document.querySelector('.notes-input');
+var $header = document.querySelector('.entries-header');
 
 $photoUrl.addEventListener('input', handleInput);
 $entryForm.addEventListener('submit', handleSubmit);
@@ -21,12 +24,12 @@ function handleLoad(event) {
   for (var i = 0; i < data.entries.length; i++) {
     var render = renderJournal(data.entries[i]);
     $list.appendChild(render);
-    swapView(data.view);
   } if (data.entries.length !== 0) {
     $noEntry.className = 'hidden';
   } else {
     $noEntry.className = '';
   }
+  swapView(data.view);
 }
 
 function handleInput(event) {
@@ -117,11 +120,23 @@ function viewData(event) {
 }
 
 function editEntry(event) {
+  $header.textContent = 'Edit Entry';
   var $dataView = event.target.getAttribute('data-view');
-  data.editing = event.target.getAttribute('data-entry-id');
   if (event.target.nodeName !== 'I') {
     return event;
   } else if (event.target.nodeName === 'I' && $dataView !== '') {
     swapView($dataView);
   }
+  var targetEntryId = event.target.getAttribute('data-entry-id');
+  for (var i = 0; i < data.entries.length; i++) {
+    if (data.entries[i].entryId === parseInt(targetEntryId)) {
+      data.editing = data.entries[i];
+      var currentView = $view[i].dataset.view;
+      data.view = currentView;
+    }
+  }
+  $title.value = data.editing.title;
+  $photoUrl.value = data.editing.imageURL;
+  $notes.value = data.editing.notes;
+  $image.src = data.editing.imageURL;
 }
