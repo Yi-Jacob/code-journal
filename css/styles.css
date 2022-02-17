@@ -88,6 +88,7 @@ a {
 
 ul {
   padding: 0;
+  text-decoration: none;
 }
 
 .margin-bottom {
@@ -101,4 +102,8 @@ p {
 .pen {
   color: rgb(86, 43, 129);
   font-size: 20px;
+}
+
+li {
+  list-style-type: none;
 }
