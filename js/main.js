@@ -38,15 +38,28 @@ function handleInput(event) {
 
 function handleSubmit(event) {
   event.preventDefault();
-  var newObj = {
-    title: $entryForm.elements.title.value,
-    photoURL: $entryForm.elements.photourl.value,
-    notes: $entryForm.elements.notes.value
-  };
-  newObj.entryId = data.nextEntryId;
-  data.nextEntryId++;
-  data.entries.unshift(newObj);
-  $list.prepend(renderJournal(newObj));
+  var listElement = document.querySelectorAll('li');
+  if (data.editing === null) {
+    var newObj = {
+      title: $entryForm.elements.title.value,
+      photoURL: $entryForm.elements.photourl.value,
+      notes: $entryForm.elements.notes.value
+    };
+    newObj.entryId = data.nextEntryId;
+    data.nextEntryId++;
+    data.entries.unshift(newObj);
+    $list.prepend(renderJournal(newObj));
+  } else {
+    for (var i = 0; i < listElement.length; i++) {
+      var objUpdate = {
+        title: $entryForm.elements.title.value,
+        imageURL: $entryForm.elements.photourl.value,
+        notes: $entryForm.elements.notes.value,
+        entryId: data.editing.entryId
+      };
+      listElement.replaceWith(renderJournal(objUpdate));
+    }
+  }
   swapView('entries');
   $image.src = 'images/placeholder-image-square.jpg';
   $entryForm.reset();
@@ -120,13 +133,13 @@ function viewData(event) {
 }
 
 function editEntry(event) {
-  $header.textContent = 'Edit Entry';
   var $dataView = event.target.getAttribute('data-view');
-  if (event.target.nodeName !== 'I') {
-    return event;
-  } else if (event.target.nodeName === 'I' && $dataView !== '') {
+  $header.textContent = 'Edit Entry';
+
+  if (event.target.nodeName === 'I' && $dataView !== '') {
     swapView($dataView);
   }
+
   var targetEntryId = event.target.getAttribute('data-entry-id');
   for (var i = 0; i < data.entries.length; i++) {
     if (data.entries[i].entryId === parseInt(targetEntryId)) {
@@ -136,7 +149,7 @@ function editEntry(event) {
     }
   }
   $title.value = data.editing.title;
-  $photoUrl.value = data.editing.imageURL;
+  $image.value = data.editing.imageURL;
   $notes.value = data.editing.notes;
   $image.src = data.editing.imageURL;
 }
