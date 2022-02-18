@@ -94,7 +94,8 @@ ul {
   margin-bottom: 1rem;
 }
 
-p {
+p,
+h2 {
   font-family: "Open Sans", sans-serif;
 }
 
