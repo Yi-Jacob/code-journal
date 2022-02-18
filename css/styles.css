@@ -42,13 +42,9 @@ label {
   color: white;
   border: none;
   border-radius: 10%;
-  margin-top: 2rem;
+  margin-top: 1rem;
   padding: 0.5rem 1rem;
   font-size: 1rem;
-}
-
-.button-position {
-  text-align: end;
 }
 
 input {
@@ -96,4 +92,12 @@ ul {
 
 p {
   font-family: "Open Sans", sans-serif;
+}
+
+.delete-button {
+  color: red;
+  border: none;
+  text-decoration: underline;
+  font-size: 1rem;
+  margin-top: 1rem;
 }

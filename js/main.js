@@ -8,12 +8,14 @@ var $entryLink = document.querySelector('.entry-link');
 var $newLink = document.querySelector('.new-link');
 var $noEntry = document.querySelector('.no-entries');
 var $list = document.querySelector('ul');
+var $delete = document.querySelector('.delete-button');
 
 $photoUrl.addEventListener('input', handleInput);
 $entryForm.addEventListener('submit', handleSubmit);
 $newLink.addEventListener('click', viewData);
 $entryLink.addEventListener('click', viewData);
 window.addEventListener('DOMContentLoaded', handleLoad);
+$delete.addEventListener('click', deleteEntry);
 
 function handleLoad(event) {
   for (var i = 0; i < data.entries.length; i++) {
@@ -106,4 +108,8 @@ function viewData(event) {
   if (event.target.nodeName === 'A' && $dataView !== '') {
     swapView($dataView);
   }
+}
+
+function deleteEntry(event) {
+
 }
