@@ -145,17 +145,15 @@ function viewData(event) {
 }
 
 function editEntry(event) {
-  var $dataView = event.target.getAttribute('data-view');
+  var dataView = event.target.getAttribute('data-view');
   $header.textContent = 'Edit Entry';
 
-  if (event.target.nodeName === 'I' && $dataView !== '') {
-    swapView($dataView);
+  if (event.target.nodeName === 'I' && dataView !== '') {
+    swapView(dataView);
     var targetId = event.target.getAttribute('data-entry-id');
     for (var i = 0; i < data.entries.length; i++) {
       if (data.entries[i].entryId === parseInt(targetId)) {
         data.editing = data.entries[i];
-        var currentView = $view[i].dataset.view;
-        data.view = currentView;
       }
     }
     $title.value = data.editing.title;
