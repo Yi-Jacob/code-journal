@@ -1,7 +1,6 @@
 /* global data */
 /* exported data */
 
-localStorage.clear();
 var $photoUrl = document.querySelector('.photo-url');
 var $image = document.querySelector('img');
 var $entryForm = document.querySelector('.form');
@@ -62,6 +61,7 @@ function handleSubmit(event) {
           entryId: data.editing.entryId
         };
         listItem[i].replaceWith(renderJournal(updateObj));
+        data.entries[i] = updateObj;
       }
     }
   }
