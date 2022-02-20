@@ -42,7 +42,7 @@ label {
   color: white;
   border: none;
   border-radius: 10%;
-  margin-top: 1rem;
+  margin-top: 2rem;
   padding: 0.5rem 1rem;
   font-size: 1rem;
 }
@@ -87,17 +87,64 @@ ul {
 }
 
 .margin-bottom {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
-p {
+p,
+h2 {
   font-family: "Open Sans", sans-serif;
 }
 
+.pen {
+  color: rgb(86, 43, 129);
+  font-size: 20px;
+}
+
+li {
+  list-style-type: none;
+}
+
 .delete-button {
-  color: red;
   border: none;
+  color: red;
   text-decoration: underline;
+  margin-top: 2rem;
+  padding: 0.5rem 1rem;
   font-size: 1rem;
-  margin-top: 1rem;
+}
+
+.modal {
+  position: fixed;
+  width: 450px;
+  height: 200px;
+  margin: auto;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+  border: none;
+  background-color: white;
+  padding: 2rem 0.5rem 1rem;
+}
+
+.modal-overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  font-family: "Open Sans", sans-serif;
+}
+
+.cancel {
+  background-color: gray;
+  border: none;
+  font-size: 1.3rem;
+  padding: 0.5rem;
+}
+
+.confirm {
+  background-color: red;
+  font-size: 1.3rem;
+  border: none;
+  padding: 0.5rem;
 }
