@@ -14,6 +14,8 @@ var $notes = document.querySelector('.notes-input');
 var $header = document.querySelector('.entries-header');
 var $delete = document.querySelector('.delete');
 var $modal = document.querySelector('.modal-overlay');
+var $confirm = document.querySelector('.confirm');
+var $cancel = document.querySelector('.cancel');
 
 $photoUrl.addEventListener('input', handleInput);
 $entryForm.addEventListener('submit', handleSubmit);
@@ -22,6 +24,8 @@ $entriesLink.addEventListener('click', viewData);
 $newLink.addEventListener('click', viewData);
 $list.addEventListener('click', editEntry);
 $delete.addEventListener('click', deleteEntry);
+$confirm.addEventListener('click', confirmDelete);
+$cancel.addEventListener('click', cancelDelete);
 
 function handleLoad(event) {
   for (var i = 0; i < data.entries.length; i++) {
@@ -169,6 +173,19 @@ function editEntry(event) {
 }
 
 function deleteEntry(event) {
-  $modal.className = 'modal modal-overlay';
+  $modal.className = 'modal-overlay';
   swapView('entry-form');
+}
+
+function cancelDelete(event) {
+  $modal.className = 'hidden modal-overlay';
+}
+
+function confirmDelete(event) {
+  var listItem = document.querySelectorAll('li');
+  for (var i = 0; i < listItem.length; i++) {
+    if (parseInt(listItem[i].getAttribute('data-entry-id')) === data.editing.entryId) {
+      listItem[i].remove();
+    }
+  }
 }
