@@ -74,8 +74,8 @@ function handleSubmit(event) {
   }
   swapView('entries');
   $image.src = 'images/placeholder-image-square.jpg';
-  $delete.className = 'delete-button hidden';
   $entryForm.reset();
+  $delete.className = 'delete-button hidden';
 }
 
 function renderJournal(entry) {
@@ -141,6 +141,7 @@ function swapView(string) {
     $noEntry.className = '';
   }
 }
+
 function viewData(event) {
   var $dataView = event.target.getAttribute('data-view');
   if (event.target.nodeName === 'A' && $dataView !== '') {
@@ -150,6 +151,7 @@ function viewData(event) {
   data.editing = null;
   $image.src = 'images/placeholder-image-square.jpg';
   $entryForm.reset();
+  $delete.className = 'delete-button hidden';
 }
 
 function editEntry(event) {
@@ -174,7 +176,6 @@ function editEntry(event) {
 
 function deleteEntry(event) {
   $modal.className = 'modal-overlay';
-  swapView('entry-form');
 }
 
 function cancelDelete(event) {
@@ -182,10 +183,17 @@ function cancelDelete(event) {
 }
 
 function confirmDelete(event) {
+  for (var i = 0; i < data.entries.length; i++) {
+    if (data.entries[i].entryId === data.editing.entryId) {
+      data.entries.slice(i, 1);
+    }
+  }
   var listItem = document.querySelectorAll('li');
-  for (var i = 0; i < listItem.length; i++) {
+  for (var x = 0; x < listItem.length; x++) {
     if (parseInt(listItem[i].getAttribute('data-entry-id')) === data.editing.entryId) {
       listItem[i].remove();
+      swapView('entries');
+      $modal.className = 'hidden modal-overlay';
     }
   }
 }
