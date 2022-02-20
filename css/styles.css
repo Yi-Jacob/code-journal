@@ -91,9 +91,19 @@ ul {
 }
 
 .margin-bottom {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
-p {
+p,
+h2 {
   font-family: "Open Sans", sans-serif;
+}
+
+.pen {
+  color: rgb(86, 43, 129);
+  font-size: 20px;
+}
+
+li {
+  list-style-type: none;
 }
