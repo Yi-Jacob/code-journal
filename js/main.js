@@ -12,10 +12,7 @@ var $list = document.querySelector('ul');
 var $title = document.querySelector('.title-input');
 var $notes = document.querySelector('.notes-input');
 var $header = document.querySelector('.entries-header');
-var $delete = document.querySelector('.delete');
-var $modal = document.querySelector('.modal-overlay');
-var $confirm = document.querySelector('.confirm');
-var $cancel = document.querySelector('.cancel');
+
 
 $photoUrl.addEventListener('input', handleInput);
 $entryForm.addEventListener('submit', handleSubmit);
@@ -23,9 +20,7 @@ window.addEventListener('DOMContentLoaded', handleLoad);
 $entriesLink.addEventListener('click', viewData);
 $newLink.addEventListener('click', viewData);
 $list.addEventListener('click', editEntry);
-$delete.addEventListener('click', deleteEntry);
-$cancel.addEventListener('click', cancelDelete);
-$confirm.addEventListener('click', confirmDelete);
+
 
 function handleLoad(event) {
   for (var i = 0; i < data.entries.length; i++) {
@@ -107,12 +102,6 @@ function renderJournal(entry) {
   hTwo.textContent = entry.title;
   divTitle.appendChild(hTwo);
 
-  var editPen = document.createElement('i');
-  divTitle.appendChild(editPen);
-  editPen.className = 'fas fa-pen pen';
-  editPen.setAttribute('data-view', 'entry-form');
-  editPen.setAttribute('data-entry-id', entry.entryId);
-
   var divNotes = document.createElement('div');
   textColumn.appendChild(divNotes);
   divNotes.className = 'row';
@@ -150,8 +139,7 @@ function viewData(event) {
   data.editing = null;
   $image.src = 'images/placeholder-image-square.jpg';
   $entryForm.reset();
-  $delete.className = 'delete-button hidden';
-}
+
 
 function editEntry(event) {
   var dataView = event.target.getAttribute('data-view');
@@ -170,29 +158,6 @@ function editEntry(event) {
     $notes.value = data.editing.notes;
     $image.src = data.editing.photoURL;
   }
-  $delete.className = 'delete-button';
+
 }
 
-function deleteEntry(event) {
-  $modal.className = 'modal-overlay';
-}
-
-function cancelDelete(event) {
-  $modal.className = 'modal-overlay hidden';
-}
-
-function confirmDelete(event) {
-  for (var i = 0; i < data.entries.length; i++) {
-    if (data.entries[i].entryId === data.editing.entryId) {
-      data.entries.splice(i, 1);
-    }
-  }
-  var listItem = document.querySelectorAll('li');
-  for (i = 0; i < listItem.length; i++) {
-    if (parseInt(listItem[i].getAttribute('data-entry-id')) === data.editing.entryId) {
-      listItem[i].remove();
-      swapView('entries');
-      $modal.className = 'modal-overlay hidden';
-    }
-  }
-}
