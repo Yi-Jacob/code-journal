@@ -141,6 +141,7 @@ li {
   border: none;
   font-size: 1.3rem;
   padding: 0.5rem;
+  margin-left: 1rem;
 }
 
 .confirm {
@@ -148,4 +149,13 @@ li {
   font-size: 1.3rem;
   border: none;
   padding: 0.5rem;
+  margin-right: 1rem;
+}
+
+h3 {
+  margin: auto;
+}
+
+.margin-top {
+  margin-top: 3rem;
 }

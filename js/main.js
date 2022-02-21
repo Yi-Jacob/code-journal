@@ -24,8 +24,8 @@ $entriesLink.addEventListener('click', viewData);
 $newLink.addEventListener('click', viewData);
 $list.addEventListener('click', editEntry);
 $delete.addEventListener('click', deleteEntry);
-$confirm.addEventListener('click', confirmDelete);
 $cancel.addEventListener('click', cancelDelete);
+$confirm.addEventListener('click', confirmDelete);
 
 function handleLoad(event) {
   for (var i = 0; i < data.entries.length; i++) {
@@ -74,8 +74,8 @@ function handleSubmit(event) {
   }
   swapView('entries');
   $image.src = 'images/placeholder-image-square.jpg';
-  $entryForm.reset();
   $delete.className = 'delete-button hidden';
+  $entryForm.reset();
 }
 
 function renderJournal(entry) {
@@ -141,7 +141,6 @@ function swapView(string) {
     $noEntry.className = '';
   }
 }
-
 function viewData(event) {
   var $dataView = event.target.getAttribute('data-view');
   if (event.target.nodeName === 'A' && $dataView !== '') {
@@ -179,21 +178,21 @@ function deleteEntry(event) {
 }
 
 function cancelDelete(event) {
-  $modal.className = 'hidden modal-overlay';
+  $modal.className = 'modal-overlay hidden';
 }
 
 function confirmDelete(event) {
   for (var i = 0; i < data.entries.length; i++) {
     if (data.entries[i].entryId === data.editing.entryId) {
-      data.entries.slice(i, 1);
+      data.entries.splice(i, 1);
     }
   }
   var listItem = document.querySelectorAll('li');
-  for (var x = 0; x < listItem.length; x++) {
+  for (i = 0; i < listItem.length; i++) {
     if (parseInt(listItem[i].getAttribute('data-entry-id')) === data.editing.entryId) {
       listItem[i].remove();
       swapView('entries');
-      $modal.className = 'hidden modal-overlay';
+      $modal.className = 'modal-overlay hidden';
     }
   }
 }
