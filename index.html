@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Code Journal</title>
   <link rel="icon" href="images/favicon.ico">
-  <link
-    rel="stylesheet"
-    crossorigin="anonymous"
+  <link rel="stylesheet" crossorigin="anonymous"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
     integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==">
   <link rel="stylesheet" href="css/reset.css">
@@ -15,8 +14,8 @@
   <link rel="stylesheet" href="css/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
-<body>
 
+<body>
   <header class="purple">
     <div class="container">
       <div class="row">
@@ -25,8 +24,18 @@
       </div>
     </div>
   </header>
-
   <main>
+    <div class="modal-overlay hidden">
+      <div class="modal">
+        <div class="row alignment margin-bottom text-align">
+          <h3>Are you sure you want to delete the entry?</h3>
+        </div>
+        <div class="row alignment margin-top">
+          <button class="cancel">Cancel</button>
+          <button class="confirm">Confirm</button>
+        </div>
+      </div>
+    </div>
     <div data-view="entry-form" class="view hidden">
       <form class="form">
         <div class="container">
@@ -56,14 +65,14 @@
             </div>
           </div>
           <div class="row">
-            <div class="column-half column-full button-position">
+            <div class="column-half column-full flex alignment">
+              <a class="delete-button delete" href="#">Delete</a>
               <button class="save-button" type="submit" data-view="entry-form">SAVE</button>
             </div>
           </div>
         </div>
       </form>
     </div>
-
     <div data-view="entries" class="view">
       <div class="container">
         <div class="row">
@@ -90,4 +99,3 @@
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
-</html>

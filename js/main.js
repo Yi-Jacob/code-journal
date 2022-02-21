@@ -13,12 +13,14 @@ var $title = document.querySelector('.title-input');
 var $notes = document.querySelector('.notes-input');
 var $header = document.querySelector('.entries-header');
 
+
 $photoUrl.addEventListener('input', handleInput);
 $entryForm.addEventListener('submit', handleSubmit);
 window.addEventListener('DOMContentLoaded', handleLoad);
 $entriesLink.addEventListener('click', viewData);
 $newLink.addEventListener('click', viewData);
 $list.addEventListener('click', editEntry);
+
 
 function handleLoad(event) {
   for (var i = 0; i < data.entries.length; i++) {
@@ -67,6 +69,7 @@ function handleSubmit(event) {
   }
   swapView('entries');
   $image.src = 'images/placeholder-image-square.jpg';
+  $delete.className = 'delete-button hidden';
   $entryForm.reset();
 }
 
@@ -98,12 +101,6 @@ function renderJournal(entry) {
   var hTwo = document.createElement('h2');
   hTwo.textContent = entry.title;
   divTitle.appendChild(hTwo);
-
-  var editPen = document.createElement('i');
-  divTitle.appendChild(editPen);
-  editPen.className = 'fas fa-pen pen';
-  editPen.setAttribute('data-view', 'entry-form');
-  editPen.setAttribute('data-entry-id', entry.entryId);
 
   var divNotes = document.createElement('div');
   textColumn.appendChild(divNotes);
@@ -142,7 +139,7 @@ function viewData(event) {
   data.editing = null;
   $image.src = 'images/placeholder-image-square.jpg';
   $entryForm.reset();
-}
+
 
 function editEntry(event) {
   var dataView = event.target.getAttribute('data-view');
@@ -161,4 +158,6 @@ function editEntry(event) {
     $notes.value = data.editing.notes;
     $image.src = data.editing.photoURL;
   }
+
 }
+
