@@ -12,90 +12,95 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&family=Proza+Libre:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
-  <header class="purple">
+  <header class="purple-background font-header">
     <div class="container">
-      <div class="row">
-        <p class="header-position header-font">Code Journal</p>
-        <a href="#" class="entry-link header-position header-font" data-view="entries">Entries</a>
+      <div class="column-full display-flex">
+        <p class="margin-zero header-padding header-font">Code Journal</p>
+        <a href="#" id="entries-link" data-view="entries"
+          class="purple-background display-flex align-center link">Entries</a>
       </div>
     </div>
   </header>
   <main>
     <div class="modal-overlay hidden">
-      <div class="modal">
-        <div class="row alignment margin-bottom text-align">
-          <h3>Are you sure you want to delete the entry?</h3>
+      <div class="modal justify-center align-center font-body">
+        <div class="row justify-center align-center">
+          <h3>Are you sure you want to delete this entry?</h3>
         </div>
-        <div class="row alignment margin-top">
-          <button class="cancel">Cancel</button>
-          <button class="confirm">Confirm</button>
+        <div class="row justify-between margin-top">
+          <button class="cancel">CANCEL</button>
+          <button class="confirm">CONFIRM</button>
         </div>
       </div>
     </div>
-    <div data-view="entry-form" class="view hidden">
-      <form class="form">
-        <div class="container">
+    <div class="view hidden" data-view="entry-form">
+      <form id="create-form">
+        <div class="container font-body">
           <div class="row">
             <div class="column-full">
-              <h1 class="entry-font entries-header">New Entry</h1>
+              <h1 id="header-text" class="font-header header-padding margin-zero">New Entry</h1>
             </div>
           </div>
           <div class="row">
-            <div class="column-half column-full">
-              <img src="images/placeholder-image-square.jpg" alt="Placeholder Image" class="image">
+            <div class="column-half">
+              <img src="images/placeholder-image-square.jpg" alt="Placeholder Image">
             </div>
-            <div class="row flex-column column-half column-full">
-              <label for="title">Please Enter a Title</label>
-              <input required class="title-input" name="title" type="text">
-
-              <label for="photourl">Please submit a Photo-URL</label>
-              <input required class="photo-url" name="photourl" type="text">
-            </div>
-          </div>
-          <div class="row">
-            <div class="column-half column-full">
-              <div class="row flex-column">
-                <label for="notes">Please add Notes</label>
-                <textarea required class="notes-input" name="notes" rows="7"></textarea>
+            <div class="column-half bold">
+              <div class="row flex-direction-column font-bold">
+                <label for="title">Title</label>
+                <input required class="padding" name="title" type="text" id="title-input">
+              </div>
+              <div class="row flex-direction-column font-bold">
+                <label for="photo-url">Photo URL</label>
+                <input required class="padding" name="photourl" type="text" id="photo-input">
               </div>
             </div>
           </div>
+          <div class="row bold">
+            <div class="column-full display-flex flex-direction-column font-bold">
+              <label for="notes">Notes</label>
+              <textarea required class="note-height font-body padding" name="notes" type="text"
+                id="notes-input"></textarea>
+            </div>
+          </div>
           <div class="row">
-            <div class="column-half column-full flex alignment">
-              <a class="delete-button delete" href="#">Delete</a>
-              <button class="save-button" type="submit" data-view="entry-form">SAVE</button>
+            <div class="column-full display-flex justify-between align-center">
+              <a id="delete-entry" class="delete-button">Delete Entry</a>
+              <button class="purple-background font-body button" data-view="entry-form" type="submit">SAVE</button>
             </div>
           </div>
         </div>
       </form>
     </div>
-    <div data-view="entries" class="view">
-      <div class="container">
+    <div class="view" data-view="entries">
+      <div class="container font-body">
         <div class="row">
-          <div class="column-half column-full flex alignment">
-            <h2 class="entries-font">Entries</h2>
-            <a class="new-button new-link" data-view="entry-form">NEW</a>
+          <div class="column-full display-flex justify-between">
+            <h1 class="font-header header-padding margin-zero">Entries</h1>
+            <a href="#" id="new-link" data-view="entry-form"
+              class="display-flex align-center purple-background font-body button justify-center margin-auto link">NEW</a>
           </div>
         </div>
-        <ul>
-          <div class="no-entries" data-view="no-entries">
-            <div class="container">
-              <div class="row">
-                <div class="column-full column-half">
-                  <p>No entries have been recorded.</p>
-                </div>
-              </div>
+        <ul class="padding-zero">
+          <div class="" id="no-entry" data-view="no-entries">
+            <div class="column-full display-flex justify-center align-center">
+              <p>No entries have been recorded.</p>
             </div>
           </div>
         </ul>
-
       </div>
     </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
 </body>
+
+</html>

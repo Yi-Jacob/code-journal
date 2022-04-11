@@ -7,13 +7,13 @@ var data = {
   nextEntryId: 1
 };
 
-var previousData = localStorage.getItem('entry-list');
+var previousEntriesJSON = localStorage.getItem('entry-list');
 
-if (previousData !== null) {
-  data = JSON.parse(previousData);
+if (previousEntriesJSON !== null) {
+  data = JSON.parse(previousEntriesJSON);
 }
 
-function handleUnload(event) {
+function handleUnload(e) {
   var entriesJSON = JSON.stringify(data);
   localStorage.setItem('entry-list', entriesJSON);
 }
